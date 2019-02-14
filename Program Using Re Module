@@ -1,0 +1,20 @@
+import re
+from random import shuffle
+srv = re.compile(r"\b(\w)(\w+)(\w)\b")
+def word(match):
+    first, mid, last = match.groups()
+
+    mid = list(mid)
+    shuffle(mid)
+
+    return first + ''.join(mid) + last
+def garble(sentence):
+    return srv.sub(word, sentence)
+
+file1 = open("f1.txt","r")
+file2 = open("f2.txt","w")
+for sentence in file1:
+    jumb = garble(sentence)
+    file2.write(jumb)
+file1.close()
+file2.close()
