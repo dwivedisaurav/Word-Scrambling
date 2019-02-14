@@ -1,0 +1,29 @@
+import random
+s=""
+e=""
+
+def scramble(line):
+    list1=line.split(" ")
+    list2=[]
+    for n in list1:
+        if(len(n)>3):
+            if(n[len(n)-1]=="." or n[len(n)-1]=="," or n[len(n)-1]=="?" or n[len(n)-1]=="!" or len(n)>4):
+                n=list(n)
+                s=str(n[0])
+                e=str(n[len(n)-1])
+                n=n[1:len(n)-1]
+                random.shuffle(n)
+                n=s+''.join(n)+e
+        list2.append(n)
+    list2=" ".join(list2)
+    print(list2)
+    return(list2)
+inp=input("enter the file name to be read")
+out=input("enter the file to be write")
+file1=open(inp,"r")
+file2=open(out,"w")
+for line in file1:
+    c=scramble(line)
+    file2.write(c)
+file1.close()
+file2.close()
